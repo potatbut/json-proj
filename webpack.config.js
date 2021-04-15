@@ -15,7 +15,6 @@ module.exports = {
     filename: 'output.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: isProd ? false : 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
