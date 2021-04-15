@@ -41,9 +41,13 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
         '"> </ul>'
       )
     }
-
+    let alias = this.alias
+    let date_from = this.date_from
+    let date_to = this.date_to
     $.each(this.number_list, function() {
-      if(!this.type) {
+      let check_alias = this.number_alias
+      let date_alias = this.cdate
+      if(alias == check_alias && date_from < date_alias && date_alias < date_to) {
         month.push(this)
       }
     })
