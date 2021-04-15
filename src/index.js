@@ -23,6 +23,7 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
 
   let numbers = data.numbers
   let month = []
+  let this_year = new Date().getFullYear().toString().substr(-2)
 
   $.each(numbers, function() {
     (this.is_visible) ?
@@ -30,8 +31,7 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
       '<p class="content__title" data-month="' 
       + new Date(this.date_from).toLocaleString('en', {month: 'short'}).toLowerCase() + 
       '">' 
-      + new Date(this.date_from).toLocaleString('en', {month: 'long'}) + 
-      '</p>'
+      + new Date(this.date_from).toLocaleString('en', {month: 'long'}) + '<sup class="content__year-label">'+ `${this_year}` +'</sup></p>'
     ):
     console.log (new Date(this.date_from).toLocaleString('en', {month: 'long'}) + ' is invisible')
     if(this.is_visible) {
