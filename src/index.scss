@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content {
+  &__wrapper {
+    position: relative;
+    overflow: auto;
+    margin: auto;
+  }
+  &__head {
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background: rgb(225, 235, 252);
+  }
+  &__title {
+    margin-bottom: 0;
+    padding: 5px 20px;
+    border-bottom: 4px solid rgb(225, 235, 252);
+    cursor: pointer;
+    &.active {
+      border-bottom: 4px solid rgb(241, 220, 223);
+    }
+  }
+  &__search{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    &-input {
+    margin: 20px;
+    width: 50%;
+    padding: 5px 30px;
+    border: none;
+    border-radius: 10px;
+    background: url(https://www.shareicon.net/data/256x256/2017/06/21/887248_lense_512x512.png) no-repeat 5px 1px;
+    background-color: rgb(247, 235, 237);
+    background-size: auto 90%;
+    outline: none;
+    }
+  }
+  &__list {
+    display: none;
+    margin-top: 80px;
+    padding: 0 60px;
+    &.active {
+      display: block;
+    }
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(241, 220, 223);
+  }
+}
+
