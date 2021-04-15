@@ -50,7 +50,7 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
 
     if(this.number_alias == 'jan') {
       $('ul[data-month="Jan"]').append('<li class="content__item"> <p class="content__item-number">'+ this.number + '</p>' + '<p class="content__item-date">' + formattedDate() +'</p></li>')
-    } else if(this.number_alias == 'feb') {
+    } else if (this.number_alias == 'feb') {
       $('ul[data-month="Feb"]').append('<li class="content__item"> <p class="content__item-number">'+ this.number + '</p>' + '<p class="content__item-date">' + formattedDate() +'</p></li>')
     }
   })
@@ -79,3 +79,19 @@ $(document).ajaxComplete(function(){
 })
 
 
+
+
+function formattedTime(formatTime = new Date()) {
+  let startTime = '12:00'
+  let endTime = '18:00'
+  let UTCtime = [
+    formatTime.getUTCHours(), 
+    formatTime.getUTCMinutes()
+  ].map(n => n < 10 ? `0${n}` : `${n}`).join(':')
+  if (startTime < UTCtime && UTCtime < endTime) {
+    console.log('From 12:00 to 18:00 - happy hours! Congratulations!')
+  }
+  return 'UTC TIME: ' + UTCtime
+}
+
+console.log(formattedTime())
