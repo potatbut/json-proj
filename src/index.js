@@ -35,7 +35,6 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
     short_month.push(moment(numbers[i].date_from).format('MMM').toLowerCase())
     long_month.push(moment(numbers[i].date_from).format('MMMM'))
     short_year.push(moment(numbers[i].date_from).format('YY'))
-    console.log(moment(numbers[i].date_from).format('YY'))
   }
   
   $.each(numbers, function(index) {
@@ -48,9 +47,7 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
     console.log (`${long_month[index]}` + ' is invisible')
     if(this.is_visible) {
       $('.content__body').append(
-        '<ul class="content__list" data-month="'
-        + new Date(this.date_from).toLocaleString('en', {month: 'short'}).toLowerCase() + 
-        '"> </ul>'
+        '<ul class="content__list" data-month="'+ `${short_month[index]}` + '"> </ul>'
       )
     }
     let alias = this.alias
@@ -69,17 +66,19 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
   let monthList = ['jan', 'feb', 'mar', 'apr', 'may', 'june', 'july', 'aug', 'sept', 'oct', 'nov', 'dec']
   
   for(let i = 0; i < monthList.length; i++) {
+    console.log(month[i].cdate)
     $.each(month, function() {
-      let formatDate = new Date(this.cdate)
+      /* let formatDate = new Date(this.cdate)
         let formattedDate = () => 
         [formatDate.getDate(), formatDate.getMonth()+1, formatDate.getFullYear()]
-        .map(n => n < 10 ? `0${n}` : `${n}`).join('.');
+        .map(n => n < 10 ? `0${n}` : `${n}`).join('.') */
+      let date_current = moment(this.cdate).format('DD.MM.YYYY')
       if(this.number_alias == monthList[i]) {
         $('ul[data-month="' + `${monthList[i]}` +'"]')
         .append(
           '<li class="content__item"><p class="content__item-number">'
            + this.number + '</p>' + '<p class="content__item-date">'
-            + formattedDate() +'</p></li>')
+            + /* formattedDate() */date_current +'</p></li>')
       }
     })
   }
