@@ -6,18 +6,14 @@ export default (window.$ = window.jQuery = jquery)
 let moment = require('moment');
 moment().format();
 
-
-function formattedTime(formatTime = new Date()) {
+function formattedTime() {
   let startTime = '12:00'
   let endTime = '18:00'
-  let UTCtime = [
-    formatTime.getUTCHours(), 
-    formatTime.getUTCMinutes()
-  ].map(n => n < 10 ? `0${n}` : `${n}`).join(':')
-  if (startTime < UTCtime && UTCtime < endTime) {
-    console.log('From 12:00 to 18:00 - happy hours! Congratulations!')
-  }
+  let UTCtime = moment.utc().format('HH:mm')
   console.log('UTC TIME: ' + UTCtime)
+  if (startTime <= UTCtime && UTCtime <= endTime) {
+    console.log('From 12:00 to 18:00 - happy hours! Congratulations! ')
+  }
 }
 formattedTime()
 
@@ -66,19 +62,14 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
   let monthList = ['jan', 'feb', 'mar', 'apr', 'may', 'june', 'july', 'aug', 'sept', 'oct', 'nov', 'dec']
   
   for(let i = 0; i < monthList.length; i++) {
-    console.log(month[i].cdate)
     $.each(month, function() {
-      /* let formatDate = new Date(this.cdate)
-        let formattedDate = () => 
-        [formatDate.getDate(), formatDate.getMonth()+1, formatDate.getFullYear()]
-        .map(n => n < 10 ? `0${n}` : `${n}`).join('.') */
       let date_current = moment(this.cdate).format('DD.MM.YYYY')
       if(this.number_alias == monthList[i]) {
         $('ul[data-month="' + `${monthList[i]}` +'"]')
         .append(
           '<li class="content__item"><p class="content__item-number">'
            + this.number + '</p>' + '<p class="content__item-date">'
-            + /* formattedDate() */date_current +'</p></li>')
+            + date_current +'</p></li>')
       }
     })
   }
