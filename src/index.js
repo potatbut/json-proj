@@ -3,6 +3,9 @@ import './index.scss'
 import jquery from "jquery"
 export default (window.$ = window.jQuery = jquery)
 
+let moment = require('moment');
+moment().format();
+
 
 function formattedTime(formatTime = new Date()) {
   let startTime = '12:00'
@@ -29,9 +32,10 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
   
 
   for (let i = 0; i < numbers.length; i++) {
-    short_month.push(new Date(numbers[i].date_from).toLocaleString('en', {month: 'short'}).toLowerCase().toString())
-    long_month.push(new Date(numbers[i].date_from).toLocaleString('en', {month: 'long'}).toString())
-    short_year.push(new Date(numbers[i].date_from).getFullYear().toString().substr(-2).toString())
+    short_month.push(moment(numbers[i].date_from).format('MMM').toLowerCase())
+    long_month.push(moment(numbers[i].date_from).format('MMMM'))
+    short_year.push(moment(numbers[i].date_from).format('YY'))
+    console.log(moment(numbers[i].date_from).format('YY'))
   }
   
   $.each(numbers, function(index) {
