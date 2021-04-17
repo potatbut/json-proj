@@ -12,7 +12,7 @@ function formattedTime() {
   let UTCtime = moment.utc().format('HH:mm')
   console.log('UTC TIME: ' + UTCtime)
   if (startTime <= UTCtime && UTCtime <= endTime) {
-    console.log('From 12:00 to 18:00 - happy hours! Congratulations! ')
+    console.log('From 12:00 to 18:00 - happy hours! Congratulations!')
   }
 }
 formattedTime()
