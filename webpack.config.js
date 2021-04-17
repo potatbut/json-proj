@@ -10,7 +10,7 @@ const isProd = !isDev
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './new.js',
+  entry: './index.js',
   output: {
     filename: 'output.js',
     path: path.resolve(__dirname, 'dist')
