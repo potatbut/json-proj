@@ -15,7 +15,6 @@ function formattedTime(formatTime = new Date()) {
     console.log('From 12:00 to 18:00 - happy hours! Congratulations!')
   }
   console.log('UTC TIME: ' + UTCtime)
-  console.log(typeof UTCtime)
 }
 formattedTime()
 
@@ -23,7 +22,6 @@ formattedTime()
 $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json', function(data) {
 
   let numbers = data.numbers
-  console.log(numbers)
   let month = []
   let short_month = []
   let long_month = []
@@ -31,9 +29,9 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
   
 
   for (let i = 0; i < numbers.length; i++) {
-    short_month.push(new Date(numbers[i].date_from).toLocaleString('en', {month: 'short'}).toLowerCase())
-    long_month.push(new Date(numbers[i].date_from).toLocaleString('en', {month: 'long'}))
-    short_year.push(new Date(numbers[i].date_from).getFullYear().toString().substr(-2))
+    short_month.push(new Date(numbers[i].date_from).toLocaleString('en', {month: 'short'}).toLowerCase().toString())
+    long_month.push(new Date(numbers[i].date_from).toLocaleString('en', {month: 'long'}).toString())
+    short_year.push(new Date(numbers[i].date_from).getFullYear().toString().substr(-2).toString())
   }
   
   $.each(numbers, function(index) {
@@ -43,7 +41,7 @@ $.getJSON('https://raw.githubusercontent.com/potatbut/json-server/master/db.json
       + `${long_month[index]}` + 
       '<sup class="content__year-label">'+ `${short_year[index]}` +'</sup></p>'
     ):
-    console.log (`${long_month[index]}` + ' is invisible', index)
+    console.log (`${long_month[index]}` + ' is invisible')
     if(this.is_visible) {
       $('.content__body').append(
         '<ul class="content__list" data-month="'
